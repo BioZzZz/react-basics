@@ -1,0 +1,20 @@
+.card {
+  padding: 0;
+  border: 1px solid #e5e5e5;
+  background-color: #fff;
+  color: #1d1d1d;
+  text-decoration: none;
+  outline: none;
+  transition: 0.2s all;
+  padding: 20px;
+  margin-top: 12px;
+  width: 300px;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.restaurant-name {
+  text-align: center;
+}
