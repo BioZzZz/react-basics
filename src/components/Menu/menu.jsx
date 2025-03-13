@@ -1,24 +1,13 @@
-import { useState } from "react";
-import { RestaurantCard } from "../RestaurantCard/restaurantCard.jsx";
-
-export const Menu = ({ restaurantsList }) => {
-  let [activeId, setActiveId] = useState(restaurantsList[0].id);
-
-  let changeActiveId = (event) => {
-    if (event.target.dataset.id === activeId) return;
-
-    setActiveId(event.target.dataset.id);
-
-    Array.from(document.getElementsByClassName("card")).forEach((card) => {
-      card.hidden = true;
-    });
-    document.getElementById(event.target.dataset.id).hidden = false;
-  };
-
+export const Menu = ({ restaurantsList, changeActiveRest }) => {
   return (
     <div>
       {restaurantsList.map(({ id, name }) => (
-        <button key={id} onClick={changeActiveId} data-id={id}>
+        <button
+          key={id}
+          onClick={changeActiveRest}
+          data-id={id}
+          className="menu-button"
+        >
           {name}
         </button>
       ))}

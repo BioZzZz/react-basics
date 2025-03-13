@@ -1,5 +1,3 @@
-import { Menu } from "../Menu/menu";
-
 export const Layout = ({ children }) => {
   return (
     <div>
