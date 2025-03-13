@@ -1,9 +1,9 @@
 import { CardMenu } from "../CardMenu/cardMenu";
 import { CardReviews } from "../CardReviews/cardReviews";
 
-export const RestaurantCard = ({ restaurant, index }) => {
+export const RestaurantCard = ({ restaurant }) => {
   return (
-    <div className="card" key={restaurant.id} id={restaurant.id}>
+    <div className="card">
       <div className="restaurantaurant-name">
         <h2>{restaurant.name}</h2>
       </div>

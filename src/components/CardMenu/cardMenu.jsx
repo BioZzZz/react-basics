@@ -1,4 +1,4 @@
-import { Counter } from "../Counter/counter";
+import { CardMenuDish } from "../cardMenuDish/cardMenuDish";
 
 export const CardMenu = ({ menu }) => {
   return (
@@ -7,10 +7,10 @@ export const CardMenu = ({ menu }) => {
       <ul>
         {menu.map((menuElem) => (
           <li key={menuElem.id}>
-            <span>
-              {`${menuElem.name} (${menuElem.ingredients.join(", ")})`}
-              <Counter />
-            </span>
+            <CardMenuDish
+              name={menuElem.name}
+              ingredients={menuElem.ingredients}
+            />
           </li>
         ))}
       </ul>
