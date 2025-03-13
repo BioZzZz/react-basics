@@ -1,18 +1,19 @@
 import { useState } from "react";
 
+const MIN = 0;
+const MAX = 5;
+
 export const Counter = () => {
   let [count, setCount] = useState(0);
-  const min = 0;
-  const max = 5;
 
   const increment = () => {
-    if (count < max) {
+    if (count < MAX) {
       setCount(count + 1);
     }
   };
 
   const decrement = () => {
-    if (count > min) {
+    if (count > MIN) {
       setCount(count - 1);
     }
   };
