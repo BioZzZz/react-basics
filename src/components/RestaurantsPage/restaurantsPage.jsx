@@ -25,6 +25,7 @@ export const RestaurantsPage = () => {
       <div>
         {restaurantsList.map(({ id, name }) => (
           <TabButton
+            key={id}
             id={id}
             name={name}
             callbackFunc={changeActiveRestaurant}
