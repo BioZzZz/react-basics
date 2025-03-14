@@ -1,10 +1,10 @@
-import { Counter } from "../Counter/counter";
+import { DishCounter } from "../DIshCounter/dishCounter";
 
 export const CardMenuDish = ({ name, ingredients }) => {
   return (
     <span>
       {`${name} (${ingredients.join(", ")})`}
-      <Counter />
+      <DishCounter />
     </span>
   );
 };
