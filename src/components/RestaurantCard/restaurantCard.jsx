@@ -1,5 +1,6 @@
 import { CardMenu } from "../CardMenu/cardMenu";
 import { CardReviews } from "../CardReviews/cardReviews";
+import { ReviewForm } from "../ReviewForm/reviewForm";
 
 export const RestaurantCard = ({ restaurant }) => {
   return (
@@ -11,6 +12,7 @@ export const RestaurantCard = ({ restaurant }) => {
       {restaurant.reviews.length ? (
         <CardReviews reviews={restaurant.reviews} />
       ) : null}
+      <ReviewForm key={restaurant.id} />
     </div>
   );
 };
