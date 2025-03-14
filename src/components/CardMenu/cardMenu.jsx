@@ -5,12 +5,9 @@ export const CardMenu = ({ menu }) => {
     <>
       <h3>Меню</h3>
       <ul>
-        {menu.map((menuElem) => (
-          <li key={menuElem.id}>
-            <CardMenuDish
-              name={menuElem.name}
-              ingredients={menuElem.ingredients}
-            />
+        {menu.map(({ id, name, ingredients }) => (
+          <li key={id}>
+            <CardMenuDish name={name} ingredients={ingredients} />
           </li>
         ))}
       </ul>
