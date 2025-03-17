@@ -68,3 +68,11 @@ textarea {
   padding-bottom: 15px;
   margin: 0px;
 }
+
+.progress-bar {
+  background-color: #dc2626;
+  top: 0;
+  position: fixed;
+  height: 10px;
+  left: 0;
+}

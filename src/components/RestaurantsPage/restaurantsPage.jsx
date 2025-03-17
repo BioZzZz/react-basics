@@ -34,6 +34,7 @@ export const RestaurantsPage = () => {
         ))}
       </div>
       <RestaurantCard restaurant={activeRestaurant} />
+      <RestaurantCard restaurant={activeRestaurant} />
     </>
   );
 };

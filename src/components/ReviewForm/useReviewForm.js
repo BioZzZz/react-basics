@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useCallback } from "react";
 import {
   DEFAULT_FORM_VALUE,
   CHANGE_NAME,
@@ -16,20 +16,29 @@ export const useReviewForm = () => {
 
   const { name, text, count } = formState;
 
-  const setName = (event) => {
-    dispatch({ type: CHANGE_NAME, payload: event.target.value });
-  };
+  const setName = useCallback(
+    (event) => {
+      dispatch({ type: CHANGE_NAME, payload: event.target.value });
+    },
+    [CHANGE_NAME]
+  );
 
-  const setText = (event) => {
-    dispatch({ type: CHANGE_TEXT, payload: event.target.value });
-  };
+  const setText = useCallback(
+    (event) => {
+      dispatch({ type: CHANGE_TEXT, payload: event.target.value });
+    },
+    [CHANGE_TEXT]
+  );
 
-  const changeCounter = (event) => {
-    dispatch({ type: CHANGE_COUNT, payload: event.target.dataset.action });
-  };
-  const clearForm = () => {
+  const changeCounter = useCallback(
+    (event) => {
+      dispatch({ type: CHANGE_COUNT, payload: event.target.dataset.action });
+    },
+    [CHANGE_COUNT]
+  );
+  const clearForm = useCallback(() => {
     dispatch({ type: CLEAR });
-  };
+  }, [CLEAR]);
 
   return { name, text, count, setName, setText, changeCounter, clearForm };
 };
