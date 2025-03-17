@@ -29,6 +29,7 @@ export const RestaurantsPage = () => {
             id={id}
             name={name}
             callbackFunc={changeActiveRestaurant}
+            disabledId={activeRestaurant.id}
           />
         ))}
       </div>
