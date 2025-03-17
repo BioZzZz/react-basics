@@ -1,36 +1,9 @@
 import { Counter } from "../Counter/counter";
-import { useReducer } from "react";
-import {
-  DEFAULT_FORM_VALUE,
-  CHANGE_NAME,
-  CHANGE_TEXT,
-  CHANGE_COUNT,
-  CLEAR,
-  reviewFormReducer,
-} from "./reviewFormHelper.js";
+import { useReviewForm } from "./useReviewForm";
 
 export const ReviewForm = () => {
-  const [formState, dispatch] = useReducer(
-    reviewFormReducer,
-    DEFAULT_FORM_VALUE
-  );
-
-  const { name, text, count } = formState;
-
-  const setName = (event) => {
-    dispatch({ type: CHANGE_NAME, payload: event.target.value });
-  };
-
-  const setText = (event) => {
-    dispatch({ type: CHANGE_TEXT, payload: event.target.value });
-  };
-
-  const changeCounter = (event) => {
-    dispatch({ type: CHANGE_COUNT, payload: event.target.dataset.action });
-  };
-  const clearForm = () => {
-    dispatch({ type: CLEAR });
-  };
+  const { name, text, count, setName, setText, changeCounter, clearForm } =
+    useReviewForm();
 
   return (
     <div className="form-container">
@@ -52,7 +25,7 @@ export const ReviewForm = () => {
         </div>
         <div className="form-group">
           <label>Рейтинг:</label>
-          <Counter count={count} onClickClbck={changeCounter} />
+          <Counter count={count} onClickCallback={changeCounter} />
         </div>
         <button type="button" onClick={clearForm}>
           Clear

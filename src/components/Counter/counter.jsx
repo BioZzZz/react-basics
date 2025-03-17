@@ -1,11 +1,11 @@
-export const Counter = ({ count, onClickClbck }) => {
+export const Counter = ({ count, onClickCallback }) => {
   return (
     <div>
-      <button onClick={onClickClbck} data-action={"increment"}>
+      <button onClick={onClickCallback} data-action={"increment"}>
         +
       </button>
       {count}
-      <button onClick={onClickClbck} data-action={"decrement"}>
+      <button onClick={onClickCallback} data-action={"decrement"}>
         -
       </button>
     </div>

@@ -17,9 +17,5 @@ export const DishCounter = () => {
     }
   };
 
-  return (
-    <>
-      <Counter count={count} onClickClbck={changeCounter} />
-    </>
-  );
+  return <Counter count={count} onClickCallback={changeCounter} />;
 };
