@@ -14,7 +14,7 @@ export const ProgressBar = () => {
     return () => {
       document.removeEventListener("scroll", scrollFunc);
     };
-  }, [progressWidth]);
+  }, []);
 
   return (
     <div className="progress-bar" style={{ width: progressWidth + "%" }}></div>
