@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
+import { calcScrollProgress } from "./calcScrollProgress";
 
 export const ProgressBar = () => {
   const [progressWidth, setWidth] = useState(0);
 
   const scrollFunc = () => {
-    const offsetHeight = document.documentElement.offsetHeight;
-    const clientHeight = document.documentElement.clientHeight;
-    const pageYOffset = window.pageYOffset;
-
-    setWidth((pageYOffset / (offsetHeight - clientHeight)) * 100);
+    setWidth(calcScrollProgress());
   };
 
   useEffect(() => {
