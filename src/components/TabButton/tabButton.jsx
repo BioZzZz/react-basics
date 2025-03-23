@@ -1,12 +1,15 @@
+import styles from "./tabButton.module.css";
+import { Button } from "../Button/button";
+
 export const TabButton = ({ id, name, callbackFunc, disabledId }) => {
   return (
-    <button
+    <Button
       onClick={callbackFunc}
-      data-id={id}
-      className="menu-button"
+      dataId={id}
+      className={styles.tabButton}
       disabled={id === disabledId}
     >
       {name}
-    </button>
+    </Button>
   );
 };

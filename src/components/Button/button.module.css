@@ -1,0 +1,38 @@
+.default {
+  padding: 5px;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  cursor: default;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: outset;
+  border-image: initial;
+  border-radius: 3px;
+}
+
+.lightTheme {
+  color: black;
+  border-color: black;
+  background-color: #efefef;
+}
+
+.darkTheme {
+  color: white;
+  border-color: white;
+  background-color: black;
+}
+
+.lightTheme.disabled {
+  background-color: white;
+}
+
+.darkTheme.disabled {
+  background-color: #525252;
+}

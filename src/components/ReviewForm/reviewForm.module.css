@@ -1,0 +1,25 @@
+.container {
+  max-width: 300px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.group {
+  margin-bottom: 5px;
+}
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+.input,
+.textArea {
+  max-width: 100%;
+  width: 100%;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.name {
+  padding-bottom: 15px;
+  margin: 0px;
+}
