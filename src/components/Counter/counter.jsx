@@ -1,13 +1,16 @@
+import { Button } from "../Button/button";
+import styles from "./counter.module.css";
+
 export const Counter = ({ count, onClickCallback }) => {
   return (
     <div>
-      <button onClick={onClickCallback} data-action={"increment"}>
+      <Button onClick={onClickCallback} dataAction={"increment"}>
         +
-      </button>
-      {count}
-      <button onClick={onClickCallback} data-action={"decrement"}>
+      </Button>
+      <span className={styles.span}>{count}</span>
+      <Button onClick={onClickCallback} dataAction={"decrement"}>
         -
-      </button>
+      </Button>
     </div>
   );
 };
