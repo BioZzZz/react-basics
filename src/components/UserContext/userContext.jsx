@@ -4,16 +4,16 @@ import { UserContext as UserContextProvider } from ".";
 export const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const loginFunction = useCallback(() => {
+  const handleLogin = useCallback(() => {
     setUser("Denis");
   }, []);
 
-  const logoutFunction = useCallback(() => {
+  const logout = useCallback(() => {
     setUser(null);
   }, []);
 
   return (
-    <UserContextProvider value={{ user, loginFunction, logoutFunction }}>
+    <UserContextProvider value={{ user, handleLogin, logout }}>
       {children}
     </UserContextProvider>
   );

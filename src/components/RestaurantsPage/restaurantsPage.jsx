@@ -28,7 +28,7 @@ export const RestaurantsPage = () => {
             key={id}
             id={id}
             name={name}
-            callbackFunc={changeActiveRestaurant}
+            onClick={changeActiveRestaurant}
             disabledId={activeRestaurant.id}
           />
         ))}

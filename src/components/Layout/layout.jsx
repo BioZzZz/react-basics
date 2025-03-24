@@ -3,6 +3,7 @@ import { ProgressBar } from "../ProgressBar/progressBar";
 import { ThemeContext } from "../ThemeContext/themeContext";
 import { ThemeConstextSwitcher } from "../ThemeContextSwitcher/themeContextSwitcher";
 import { UserContext } from "../UserContext/userContext";
+import styles from "./layout.module.css";
 
 export const Layout = ({ children }) => {
   return (
@@ -10,7 +11,7 @@ export const Layout = ({ children }) => {
       <ProgressBar />
       <UserContext>
         <ThemeContext>
-          <div className="header">
+          <div className={styles.header}>
             HEADER
             <div>
               <LoginForm />
@@ -18,7 +19,7 @@ export const Layout = ({ children }) => {
             </div>
           </div>
           <section>{children}</section>
-          <footer className="footer">FOOTER</footer>
+          <footer className={styles.footer}>FOOTER</footer>
         </ThemeContext>
       </UserContext>
     </div>

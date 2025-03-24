@@ -4,19 +4,19 @@ import { UserContext } from "../UserContext";
 import styles from "./loginForm.module.css";
 
 export const LoginForm = () => {
-  const { user, loginFunction, logoutFunction } = use(UserContext);
+  const { user, handleLogin, logout } = use(UserContext);
 
   return (
     <>
       {user === null ? (
-        <Button onClick={loginFunction} className={styles.button}>
-          {"Login"}
+        <Button onClick={handleLogin} className={styles.button}>
+          Login
         </Button>
       ) : (
         <>
           <span>{user}</span>
-          <Button onClick={logoutFunction} className={styles.button}>
-            {"Logout"}
+          <Button onClick={logout} className={styles.button}>
+            Logout
           </Button>
         </>
       )}
