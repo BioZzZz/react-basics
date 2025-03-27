@@ -1,40 +1,38 @@
-import { restaurants } from "../../assets/mock.js";
 import { TabButton } from "../TabButton/tabButton.jsx";
-import { RestaurantCard } from "../RestaurantCard/restaurantCard.jsx";
 import { useState } from "react";
-
-const restaurantsList = restaurants;
+import { useSelector } from "react-redux";
+import { selectRestaurantsIds } from "../../redux/entities/restaurants/slice.js";
+import { RestaurantCardContainer } from "../RestaurantCard/restaurantCardContainer.jsx";
 
 export const RestaurantsPage = () => {
-  const [activeRestaurant, setActiveRestaurant] = useState(restaurantsList[0]);
+  const restaurantsIds = useSelector(selectRestaurantsIds);
+
+  const [activeRestaurantId, setActiveRestaurantId] = useState(
+    restaurantsIds[0]
+  );
 
   const changeActiveRestaurant = (event) => {
-    if (event.target.dataset.id === activeRestaurant.id) {
+    if (event.target.dataset.id === activeRestaurantId) {
       return;
     }
 
-    setActiveRestaurant(
-      restaurantsList.find(
-        (restaurant) => restaurant.id === event.target.dataset.id
-      )
-    );
+    setActiveRestaurantId(event.target.dataset.id);
   };
 
   return (
     <>
       <div>
-        {restaurantsList.map(({ id, name }) => (
+        {restaurantsIds.map((id) => (
           <TabButton
             key={id}
             id={id}
-            name={name}
             onClick={changeActiveRestaurant}
-            disabledId={activeRestaurant.id}
+            disabledId={activeRestaurantId}
           />
         ))}
       </div>
-      <RestaurantCard restaurant={activeRestaurant} />
-      <RestaurantCard restaurant={activeRestaurant} />
+      <RestaurantCardContainer id={activeRestaurantId} />
+      <RestaurantCardContainer id={activeRestaurantId} />
     </>
   );
 };

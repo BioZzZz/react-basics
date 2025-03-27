@@ -1,15 +1,15 @@
 import { use } from "react";
 import { DishCounter } from "../DIshCounter/dishCounter";
 import { UserContext } from "../UserContext";
-import styles from "./cardMenuDish.module.css";
+import styles from "./cartItem.module.css";
 
-export const CardMenuDish = ({ dish }) => {
+export const CartItem = ({ item }) => {
+  const { id, name } = item;
   const { user } = use(UserContext);
-  const { id, name, ingredients } = dish;
 
   return (
     <div className={styles.item}>
-      {`${name} (${ingredients.join(", ")})`}
+      {name}
       {user && <DishCounter id={id} />}
     </div>
   );

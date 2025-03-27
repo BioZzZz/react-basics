@@ -1,21 +1,30 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Counter } from "../Counter/counter";
-import { useState } from "react";
+import {
+  addToCart,
+  removeFromCart,
+  selectCartItemAmountById,
+} from "../../redux/entities/cart/slice";
+import { useCallback } from "react";
 
-const MIN = 0;
-const MAX = 5;
+export const DishCounter = ({ id }) => {
+  const value =
+    useSelector((state) => selectCartItemAmountById(state, id)) || 0;
 
-export const DishCounter = () => {
-  const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
 
-  const changeCounter = (event) => {
-    switch (event.target.dataset.action) {
-      case "increment":
-        setCount(Math.min(MAX, count + 1));
-        break;
-      case "decrement":
-        setCount(Math.max(MIN, count - 1));
-    }
-  };
+  const changeCounter = useCallback(
+    (event) => {
+      switch (event.target.dataset.action) {
+        case "increment":
+          dispatch(addToCart(id));
+          break;
+        case "decrement":
+          dispatch(removeFromCart(id));
+      }
+    },
+    [dispatch, id]
+  );
 
-  return <Counter count={count} onClickCallback={changeCounter} />;
+  return <Counter count={value} onClickCallback={changeCounter} />;
 };

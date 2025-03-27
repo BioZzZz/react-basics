@@ -1,16 +1,17 @@
-import { CardMenuDish } from "../cardMenuDish/cardMenuDish";
+import { CardMenuDishContainer } from "../cardMenuDish/cardMenuDishContainer";
+import styles from "./cardMenu.module.css";
 
 export const CardMenu = ({ menu }) => {
   return (
-    <>
+    <div className={styles.container}>
       <h3>Меню</h3>
-      <ul>
-        {menu.map(({ id, name, ingredients }) => (
-          <li key={id}>
-            <CardMenuDish name={name} ingredients={ingredients} />
-          </li>
+      <div>
+        {menu.map((id) => (
+          <div key={id}>
+            <CardMenuDishContainer id={id} />
+          </div>
         ))}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 };

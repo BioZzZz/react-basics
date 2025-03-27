@@ -1,19 +1,11 @@
-.card {
+.container {
   border: 1px solid #e5e5e5;
   background-color: #fff;
   color: #1d1d1d;
   text-decoration: none;
   outline: none;
   transition: 0.2s all;
+  width: 500px;
   padding: 20px;
   margin-top: 12px;
-  width: 500px;
-}
-
-.card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.restaurantName {
-  text-align: center;
 }
