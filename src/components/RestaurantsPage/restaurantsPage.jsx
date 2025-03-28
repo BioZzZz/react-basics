@@ -1,4 +1,4 @@
-import { TabButton } from "../TabButton/tabButton.jsx";
+import { RestaurantTabButton } from "../RestaurantTabButton/restaurantTabButton.jsx";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectRestaurantsIds } from "../../redux/entities/restaurants/slice.js";
@@ -23,7 +23,7 @@ export const RestaurantsPage = () => {
     <>
       <div>
         {restaurantsIds.map((id) => (
-          <TabButton
+          <RestaurantTabButton
             key={id}
             id={id}
             onClick={changeActiveRestaurant}
@@ -31,7 +31,6 @@ export const RestaurantsPage = () => {
           />
         ))}
       </div>
-      <RestaurantCardContainer id={activeRestaurantId} />
       <RestaurantCardContainer id={activeRestaurantId} />
     </>
   );

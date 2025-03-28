@@ -1,9 +1,9 @@
-import styles from "./tabButton.module.css";
+import styles from "./restaurantTabButton.module.css";
 import { Button } from "../Button/button";
 import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
 
-export const TabButton = ({ id, onClick, disabledId }) => {
+export const RestaurantTabButton = ({ id, onClick, disabledId }) => {
   const restaurant = useSelector((state) => selectRestaurantById(state, id));
 
   if (!restaurant) {
