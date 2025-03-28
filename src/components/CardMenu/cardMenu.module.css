@@ -1,0 +1,9 @@
+.container {
+  background-color: #fff;
+  color: #1d1d1d;
+  text-decoration: none;
+  outline: none;
+  transition: 0.2s all;
+  width: 500px;
+  margin-top: 12px;
+}

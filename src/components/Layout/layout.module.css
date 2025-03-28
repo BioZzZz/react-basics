@@ -1,6 +1,5 @@
 .footer {
   height: 30px;
-  width: 300px;
   padding: 20px;
   border: 1px solid #e5e5e5;
   text-align: center;
@@ -10,7 +9,6 @@
 
 .header {
   height: 30px;
-  width: 300px;
   padding: 20px;
   border: 1px solid #e5e5e5;
   text-align: center;
