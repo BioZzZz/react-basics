@@ -1,24 +1,24 @@
-import { NavLink } from "react-router";
-import styles from "./restaurantCardTab.module.css";
+import styles from "./tabNavLink.module.css";
 import classNames from "classnames";
 import { use } from "react";
+import { NavLink } from "react-router";
 import { ThemeContext } from "../ThemeContext";
 
-export const RestaurantCardTab = ({ to, name }) => {
+export const TabNavLink = ({ to, text, className }) => {
   const { theme } = use(ThemeContext);
 
   return (
     <NavLink
-      to={to}
       className={({ isActive }) =>
-        classNames(styles.default, {
+        classNames(styles.default, className, {
           [styles.lightTheme]: theme === "light",
           [styles.darkTheme]: theme === "dark",
           [styles.isActive]: isActive,
         })
       }
+      to={to}
     >
-      {name}
+      {text}
     </NavLink>
   );
 };

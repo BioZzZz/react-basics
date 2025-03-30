@@ -6,12 +6,12 @@ import { Provider } from "react-redux";
 import { store } from "../../redux/store.js";
 import "./app.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
-import { HomePage } from "../../pages/homePage.jsx";
 import { RestaurantPage } from "../../pages/restaurantPage.jsx";
 import { RestaurantMenuPage } from "../../pages/restaurantMenuPage.jsx";
 import { RestaurantReviewsPage } from "../../pages/restaurantReviewsPage.jsx";
 import { DishPage } from "../../pages/dishPage.jsx";
 import { NotFoundPage } from "../../pages/notFoundPage/notFoundPage.jsx";
+import { HomePage } from "../../pages/homePage/homePage.jsx";
 
 export const App = () => {
   return (

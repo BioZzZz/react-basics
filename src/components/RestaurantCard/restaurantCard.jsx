@@ -1,8 +1,8 @@
 import { Outlet } from "react-router";
 import styles from "./restaurantCard.module.css";
-import { RestaurantCardTab } from "../RestaurantCardTab/restaurentCardTab";
+import { TabNavLink } from "../TabNavLink/tabNavLink";
 
-export const RestaurantCard = ({ restaurant, children }) => {
+export const RestaurantCard = ({ restaurant }) => {
   const { id, name } = restaurant;
 
   return (
@@ -11,8 +11,8 @@ export const RestaurantCard = ({ restaurant, children }) => {
         <h2>{name}</h2>
       </div>
       <div>
-        <RestaurantCardTab to={`/restaurants/${id}/menu`} name="Меню" />
-        <RestaurantCardTab to={`/restaurants/${id}/reviews`} name="Отзывы" />
+        <TabNavLink to={`/restaurants/${id}/menu`} text="Меню" />
+        <TabNavLink to={`/restaurants/${id}/reviews`} text="Отзывы" />
         <Outlet />
       </div>
     </div>
