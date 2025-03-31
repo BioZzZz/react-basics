@@ -1,16 +1,12 @@
-import { use } from "react";
-import { DishCounter } from "../DIshCounter/dishCounter";
-import { UserContext } from "../UserContext";
 import styles from "./cardMenuDish.module.css";
+import { TabLink } from "../TabLink/tabLink";
 
 export const CardMenuDish = ({ dish }) => {
-  const { user } = use(UserContext);
-  const { id, name, ingredients } = dish;
+  const { id, name } = dish;
 
   return (
-    <div className={styles.item}>
-      {`${name} (${ingredients.join(", ")})`}
-      {user && <DishCounter id={id} />}
+    <div key={id} className={styles.item}>
+      <TabLink to={`/dish/${id}`} text={name} />
     </div>
   );
 };
