@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import { selectDishById } from "../../redux/entities/dishes/slice";
-import { CardMenuDish } from "./cardMenuDish";
+import { Dish } from "./dish";
 
-export const CardMenuDishContainer = ({ id }) => {
+export const DishContainer = ({ id }) => {
   const dish = useSelector((state) => selectDishById(state, id));
 
   if (!dish) {
     return null;
   }
 
-  return <CardMenuDish dish={dish} />;
+  return <Dish dish={dish} />;
 };

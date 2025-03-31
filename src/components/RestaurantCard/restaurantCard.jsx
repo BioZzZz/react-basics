@@ -1,22 +1,20 @@
-import { use } from "react";
-import { CardMenu } from "../CardMenu/cardMenu";
-import { CardReviews } from "../CardReviews/cardReviews";
-import { ReviewForm } from "../ReviewForm/reviewForm";
-import { UserContext } from "../UserContext";
+import { Outlet } from "react-router";
 import styles from "./restaurantCard.module.css";
+import { TabNavLink } from "../TabNavLink/tabNavLink";
 
 export const RestaurantCard = ({ restaurant }) => {
-  const { user } = use(UserContext);
-  const { id, name, menu, reviews } = restaurant;
+  const { id, name } = restaurant;
 
   return (
     <div className={styles.card}>
       <div className={styles.restaurantName}>
         <h2>{name}</h2>
       </div>
-      <CardMenu menu={menu} />
-      {reviews.length ? <CardReviews reviews={reviews} /> : null}
-      {user && <ReviewForm key={id} />}
+      <div>
+        <TabNavLink to={`/restaurants/${id}/menu`} text="Меню" />
+        <TabNavLink to={`/restaurants/${id}/reviews`} text="Отзывы" />
+        <Outlet />
+      </div>
     </div>
   );
 };
