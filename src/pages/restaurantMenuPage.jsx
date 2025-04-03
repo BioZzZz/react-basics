@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { useRequest } from "../redux/hooks/useRequest";
 import { getDishes } from "../redux/entities/dishes/getDishes";
 import { IDLE, PENDING, REJECTED } from "../constants/request-status";
+import { Loader } from "../components/Loader/loader";
 
 export const RestaurantMenuPage = () => {
   const { restaurantId } = useParams();
@@ -14,11 +15,11 @@ export const RestaurantMenuPage = () => {
   const requestDishesStatus = useRequest(getDishes, restaurantId);
 
   if (requestDishesStatus === IDLE || requestDishesStatus === PENDING) {
-    return <div>Loading dishes...</div>;
+    return <Loader text={"Loading dishes..."} />;
   }
 
   if (requestDishesStatus === REJECTED) {
-    return <div>Loading dishes error</div>;
+    return <Loader text={"Loading dishes error"} />;
   }
 
   return <CardMenu menu={menu} />;

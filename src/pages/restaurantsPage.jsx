@@ -5,17 +5,18 @@ import { getRestaurants } from "../redux/entities/restaurants/getRestaurants.js"
 import { useRequest } from "../redux/hooks/useRequest.js";
 import { useSelector } from "react-redux";
 import { IDLE, PENDING, REJECTED } from "../constants/request-status.js";
+import { Loader } from "../components/Loader/loader.jsx";
 
 export const RestaurantsPage = () => {
   const requestStatus = useRequest(getRestaurants);
   const restaurantsIds = useSelector(selectRestaurantsIds);
 
   if (requestStatus === IDLE || requestStatus === PENDING) {
-    return "Loading restaurants...";
+    return <Loader text={"Loading restaurants..."} />;
   }
 
   if (requestStatus === REJECTED) {
-    return "Loading restaurants error";
+    return <Loader text={"Loading restaurants error"} />;
   }
 
   return (

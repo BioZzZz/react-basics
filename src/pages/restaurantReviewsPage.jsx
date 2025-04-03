@@ -14,6 +14,7 @@ import {
   REJECTED,
 } from "../constants/request-status";
 import { getUsers } from "../redux/entities/users/getUsers";
+import { Loader } from "../components/Loader/loader";
 
 export const RestaurantReviewsPage = () => {
   const { user } = useContext(UserContext);
@@ -30,11 +31,11 @@ export const RestaurantReviewsPage = () => {
     requestUsersStatus === PENDING ||
     requestUsersStatus === PENDING
   ) {
-    return <div>Loading reviews & users...</div>;
+    return <Loader text={"Loading reviews & users..."} />;
   }
 
   if (requestReviewsStatus === REJECTED || requestUsersStatus === REJECTED) {
-    return <div>Loading reviews & users error</div>;
+    return <Loader text={"Loading reviews & users error"} />;
   }
 
   return (
