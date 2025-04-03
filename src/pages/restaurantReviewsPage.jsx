@@ -5,6 +5,15 @@ import { useContext } from "react";
 import { UserContext } from "../components/UserContext";
 import { ReviewForm } from "../components/ReviewForm/reviewForm";
 import { CardReviews } from "../components/CardReviews/cardReviews";
+import { getReviews } from "../redux/entities/reviews/getReviews";
+import { useRequest } from "../redux/hooks/useRequest";
+import {
+  FULFILLED,
+  IDLE,
+  PENDING,
+  REJECTED,
+} from "../constants/request-status";
+import { getUsers } from "../redux/entities/users/getUsers";
 
 export const RestaurantReviewsPage = () => {
   const { user } = useContext(UserContext);
@@ -12,6 +21,21 @@ export const RestaurantReviewsPage = () => {
   const { reviews } = useSelector((state) =>
     selectRestaurantById(state, restaurantId)
   );
+  const requestReviewsStatus = useRequest(getReviews, restaurantId);
+  const requestUsersStatus = useRequest(getUsers);
+
+  if (
+    requestReviewsStatus === IDLE ||
+    requestReviewsStatus === IDLE ||
+    requestUsersStatus === PENDING ||
+    requestUsersStatus === PENDING
+  ) {
+    return <div>Loading reviews & users...</div>;
+  }
+
+  if (requestReviewsStatus === REJECTED || requestUsersStatus === REJECTED) {
+    return <div>Loading reviews & users error</div>;
+  }
 
   return (
     <div>
