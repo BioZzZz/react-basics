@@ -1,4 +1,4 @@
-import { RestaurantsPage } from "../RestaurantsPage/restaurantsPage.jsx";
+import { RestaurantsPage } from "../../pages/restaurantsPage.jsx";
 import { Layout } from "../Layout/layout.jsx";
 import { ThemeContext } from "../ThemeContext/themeContext";
 import { UserContext } from "../UserContext/userContext";
