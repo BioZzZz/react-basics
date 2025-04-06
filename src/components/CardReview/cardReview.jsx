@@ -1,13 +1,18 @@
-import { useSelector } from "react-redux";
-import { selectUserById } from "../../redux/entities/users/slice";
 import styles from "./cardReview.module.css";
+import { useGetUsersQuery } from "../../redux/services/api";
 const MAX = 5;
 
-export const CardReview = ({ review }) => {
-  const { userId, text, rating } = review;
-  const { name } = useSelector((state) => selectUserById(state, userId));
+export const CardReview = ({ userId, text, rating }) => {
+  const { data } = useGetUsersQuery(undefined, {
+    selectFromResult: (result) => ({
+      ...result,
+      data: result?.data.find(({ id }) => id === userId),
+    }),
+  });
 
   return (
-    <div className={styles.item}>{`${name}: ${text} - ${rating}/${MAX}`}</div>
+    <div
+      className={styles.item}
+    >{`${data.name}: ${text} - ${rating}/${MAX}`}</div>
   );
 };

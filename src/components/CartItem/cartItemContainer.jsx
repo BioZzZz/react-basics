@@ -1,13 +1,12 @@
-import { useSelector } from "react-redux";
-import { selectDishById } from "../../redux/entities/dishes/slice";
 import { CartItem } from "./cartItem";
+import { useGetDishByIdQuery } from "../../redux/services/api";
 
 export const CartItemContainer = ({ id }) => {
-  const item = useSelector((state) => selectDishById(state, id));
+  const { data, isLoading, isError } = useGetDishByIdQuery(id);
 
-  if (!item) {
+  if (isLoading || isError) {
     return null;
   }
 
-  return <CartItem item={item} />;
+  return <CartItem item={data} />;
 };

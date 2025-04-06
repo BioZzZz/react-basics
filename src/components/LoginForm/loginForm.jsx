@@ -14,7 +14,7 @@ export const LoginForm = () => {
         </Button>
       ) : (
         <>
-          <span>{user}</span>
+          <span>{user.name}</span>
           <Button onClick={logout} className={styles.button}>
             Logout
           </Button>

@@ -1,21 +1,19 @@
 import { useParams } from "react-router";
-import { DishContainer } from "../components/Dish/dishContainer";
-import { useRequest } from "../redux/hooks/useRequest";
-import { getDish } from "../redux/entities/dishes/getDish";
-import { IDLE, PENDING, REJECTED } from "../constants/request-status";
 import { Loader } from "../components/Loader/loader";
+import { useGetDishByIdQuery } from "../redux/services/api";
+import { Dish } from "../components/Dish/dish";
 
 export const DishPage = () => {
   const { dishId } = useParams();
-  const requestDishStatus = useRequest(getDish, dishId);
+  const { data, isLoading, isError } = useGetDishByIdQuery(dishId);
 
-  if (requestDishStatus === IDLE || requestDishStatus === PENDING) {
+  if (isLoading) {
     return <Loader text={"Loading dish..."} />;
   }
 
-  if (requestDishStatus === REJECTED) {
+  if (isError) {
     return <Loader text={"Loading dish error"} />;
   }
 
-  return <DishContainer id={dishId} />;
+  return <Dish dish={data} />;
 };

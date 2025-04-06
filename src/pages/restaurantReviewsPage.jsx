@@ -1,47 +1,50 @@
-import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { selectRestaurantById } from "../redux/entities/restaurants/slice";
 import { useContext } from "react";
 import { UserContext } from "../components/UserContext";
 import { ReviewForm } from "../components/ReviewForm/reviewForm";
 import { CardReviews } from "../components/CardReviews/cardReviews";
-import { getReviews } from "../redux/entities/reviews/getReviews";
-import { useRequest } from "../redux/hooks/useRequest";
-import {
-  FULFILLED,
-  IDLE,
-  PENDING,
-  REJECTED,
-} from "../constants/request-status";
-import { getUsers } from "../redux/entities/users/getUsers";
 import { Loader } from "../components/Loader/loader";
+import {
+  useAddReviewMutation,
+  useGetReviewsByRestaurantIdQuery,
+  useGetUsersQuery,
+} from "../redux/services/api";
 
 export const RestaurantReviewsPage = () => {
   const { user } = useContext(UserContext);
   const { restaurantId } = useParams();
-  const { reviews } = useSelector((state) =>
-    selectRestaurantById(state, restaurantId)
-  );
-  const requestReviewsStatus = useRequest(getReviews, restaurantId);
-  const requestUsersStatus = useRequest(getUsers);
+  const {
+    data: reviewsData,
+    isFetching: reviewsIsFetching,
+    isError: reviewsIsError,
+  } = useGetReviewsByRestaurantIdQuery(restaurantId);
 
-  if (
-    requestReviewsStatus === IDLE ||
-    requestReviewsStatus === IDLE ||
-    requestUsersStatus === PENDING ||
-    requestUsersStatus === PENDING
-  ) {
-    return <Loader text={"Loading reviews & users..."} />;
-  }
+  const {
+    data: usersData,
+    isLoading: usersIsLoading,
+    isError: usersIsError,
+  } = useGetUsersQuery();
 
-  if (requestReviewsStatus === REJECTED || requestUsersStatus === REJECTED) {
-    return <Loader text={"Loading reviews & users error"} />;
-  }
+  const [addReview, { isLoading: isAddReviewLoading }] = useAddReviewMutation();
+  const handleAddReviewSubmit = (review) => {
+    addReview({ restaurantId: restaurantId, review });
+  };
 
   return (
     <div>
-      {reviews.length ? <CardReviews reviews={reviews} /> : null}
-      {user && <ReviewForm />}
+      {reviewsIsFetching || usersIsLoading ? (
+        <Loader text={"Loading reviews & users..."} />
+      ) : reviewsIsError || usersIsError ? (
+        <Loader text={"Loading reviews & users error"} />
+      ) : reviewsData?.length ? (
+        <CardReviews reviews={reviewsData} />
+      ) : null}
+      {user && (
+        <ReviewForm
+          onSubmit={handleAddReviewSubmit}
+          isSubmitDisabled={isAddReviewLoading}
+        />
+      )}
     </div>
   );
 };
