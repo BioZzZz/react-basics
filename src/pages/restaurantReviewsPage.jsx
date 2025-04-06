@@ -41,6 +41,8 @@ export const RestaurantReviewsPage = () => {
       ) : null}
       {user && (
         <ReviewForm
+          addClearButton={true}
+          formHeaderText={"Оставь отзыв"}
           onSubmit={handleAddReviewSubmit}
           isSubmitDisabled={isAddReviewLoading}
         />

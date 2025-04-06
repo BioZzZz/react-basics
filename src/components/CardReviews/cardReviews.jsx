@@ -7,7 +7,7 @@ export const CardReviews = ({ reviews }) => {
       <div>
         {reviews.map(({ id, text, rating, userId }) => (
           <div key={id}>
-            <CardReview userId={userId} text={text} rating={rating} />
+            <CardReview id={id} userId={userId} text={text} rating={rating} />
           </div>
         ))}
       </div>

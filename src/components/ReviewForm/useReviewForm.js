@@ -7,10 +7,10 @@ import {
   reviewFormReducer,
 } from "./reviewFormHelper.js";
 
-export const useReviewForm = () => {
+export const useReviewForm = (defaultValue) => {
   const [formState, dispatch] = useReducer(
     reviewFormReducer,
-    DEFAULT_FORM_VALUE
+    defaultValue ? defaultValue : DEFAULT_FORM_VALUE
   );
 
   const { name, text, count } = formState;
