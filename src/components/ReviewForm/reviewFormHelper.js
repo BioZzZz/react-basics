@@ -1,10 +1,8 @@
 export const DEFAULT_FORM_VALUE = {
-  name: "",
   text: "",
   count: 1,
 };
 
-export const CHANGE_NAME = "CHANGE_NAME";
 export const CHANGE_TEXT = "CHANGE_TEXT";
 export const CHANGE_COUNT = "CHANGE_COUNT";
 export const CLEAR = "CLEAR";
@@ -14,11 +12,6 @@ const COUNTER_MAX = 5;
 
 export const reviewFormReducer = (oldState, { type, payload }) => {
   switch (type) {
-    case CHANGE_NAME:
-      return {
-        ...oldState,
-        name: payload,
-      };
     case CHANGE_TEXT:
       return {
         ...oldState,

@@ -1,21 +1,24 @@
 import { useParams } from "react-router";
-import { RestaurantCardContainer } from "../components/RestaurantCard/restaurantCardContainer";
-import { useRequest } from "../redux/hooks/useRequest";
-import { getRestaurant } from "../redux/entities/restaurants/getRestaurant";
-import { IDLE, PENDING, REJECTED } from "../constants/request-status";
 import { Loader } from "../components/Loader/loader";
+import { useGetRestaurantsQuery } from "../redux/services/api";
+import { RestaurantCard } from "../components/RestaurantCard/restaurantCard";
 
 export const RestaurantPage = () => {
   const { restaurantId } = useParams();
-  const requestRestaurantStatus = useRequest(getRestaurant, restaurantId);
+  const { data, isLoading, isError } = useGetRestaurantsQuery(undefined, {
+    selectFromResult: (result) => ({
+      ...result,
+      data: result?.data.find(({ id }) => id === restaurantId),
+    }),
+  });
 
-  if (requestRestaurantStatus === IDLE || requestRestaurantStatus === PENDING) {
+  if (isLoading) {
     return <Loader text={"Loading restaurant..."} />;
   }
 
-  if (requestRestaurantStatus === REJECTED) {
+  if (isError) {
     return <Loader text={"Loading restaurant error"} />;
   }
 
-  return <RestaurantCardContainer id={restaurantId} />;
+  return <RestaurantCard restaurant={data} />;
 };

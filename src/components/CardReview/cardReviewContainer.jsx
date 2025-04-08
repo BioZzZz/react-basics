@@ -9,5 +9,5 @@ export const CardReviewContainer = ({ id }) => {
     return null;
   }
 
-  return <CardReview review={review}></CardReview>;
+  return <CardReview review={review} />;
 };
