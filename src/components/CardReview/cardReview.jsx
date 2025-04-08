@@ -35,7 +35,7 @@ export const CardReview = ({ id, userId, text, rating }) => {
     <div>
       <div className={styles.item}>
         <span>{`${data.name}: ${text} - ${rating}/${MAX}`}</span>
-        {user && userId === user.id ? (
+        {user && userId === user?.id ? (
           <Button onClick={changeEditState}>Edit</Button>
         ) : null}
       </div>
