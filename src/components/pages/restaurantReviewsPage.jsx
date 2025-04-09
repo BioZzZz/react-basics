@@ -1,18 +1,18 @@
-import { useParams } from "react-router";
+"use client";
+
 import { useContext } from "react";
-import { UserContext } from "../components/UserContext";
-import { ReviewForm } from "../components/ReviewForm/reviewForm";
-import { CardReviews } from "../components/CardReviews/cardReviews";
-import { Loader } from "../components/Loader/loader";
+import { UserContext } from "../UserContext";
+import { ReviewForm } from "../ReviewForm/reviewForm";
+import { CardReviews } from "../CardReviews/cardReviews";
+import { Loader } from "../Loader/loader";
 import {
+  useGetUsersQuery,
   useAddReviewMutation,
   useGetReviewsByRestaurantIdQuery,
-  useGetUsersQuery,
-} from "../redux/services/api";
+} from "../../redux/services/api";
 
-export const RestaurantReviewsPage = () => {
+export const RestaurantReviewsPage = ({ restaurantId }) => {
   const { user } = useContext(UserContext);
-  const { restaurantId } = useParams();
   const {
     data: reviewsData,
     isFetching: reviewsIsFetching,
