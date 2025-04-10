@@ -1,10 +1,10 @@
-import { useParams } from "react-router";
-import { Loader } from "../components/Loader/loader";
-import { useGetRestaurantsQuery } from "../redux/services/api";
-import { RestaurantCard } from "../components/RestaurantCard/restaurantCard";
+"use client";
 
-export const RestaurantPage = () => {
-  const { restaurantId } = useParams();
+import { Loader } from "../Loader/loader";
+import { RestaurantCard } from "../RestaurantCard/restaurantCard";
+import { useGetRestaurantsQuery } from "../../redux/services/api";
+
+export const RestaurantsSubPagesLayout = ({ restaurantId, children }) => {
   const { data, isLoading, isError } = useGetRestaurantsQuery(undefined, {
     selectFromResult: (result) => ({
       ...result,
@@ -20,5 +20,5 @@ export const RestaurantPage = () => {
     return <Loader text={"Loading restaurant error"} />;
   }
 
-  return <RestaurantCard restaurant={data} />;
+  return <RestaurantCard restaurant={data}>{children}</RestaurantCard>;
 };

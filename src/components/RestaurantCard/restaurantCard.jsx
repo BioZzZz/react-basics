@@ -1,9 +1,10 @@
-import { Outlet } from "react-router";
 import styles from "./restaurantCard.module.css";
-import { TabNavLink } from "../TabNavLink/tabNavLink";
+import { TabLink } from "../TabLink/tabLink";
+import { usePathname } from "next/navigation";
 
-export const RestaurantCard = ({ restaurant }) => {
+export const RestaurantCard = ({ restaurant, children }) => {
   const { id, name } = restaurant;
+  const path = usePathname();
 
   return (
     <div className={styles.card}>
@@ -11,9 +12,19 @@ export const RestaurantCard = ({ restaurant }) => {
         <h2>{name}</h2>
       </div>
       <div>
-        <TabNavLink to={`/restaurants/${id}/menu`} text="Меню" />
-        <TabNavLink to={`/restaurants/${id}/reviews`} text="Отзывы" />
-        <Outlet />
+        <TabLink
+          href={`/restaurants/${id}/menu`}
+          text={"Меню"}
+          isActive={path.includes("/menu")}
+          styleType={"button"}
+        />
+        <TabLink
+          href={`/restaurants/${id}/reviews`}
+          text={"Отзывы"}
+          isActive={path.includes("/reviews")}
+          styleType={"button"}
+        />
+        {children}
       </div>
     </div>
   );
