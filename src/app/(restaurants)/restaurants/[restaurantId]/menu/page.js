@@ -1,4 +1,4 @@
-import { RestaurantMenuPage } from "../../../../../../components/pages/restaurantMenuPage";
+import { RestaurantMenuPage } from "../../../../../components/pages/restaurantMenuPage";
 
 const MenuPage = async ({ params }) => {
   const { restaurantId } = await params;

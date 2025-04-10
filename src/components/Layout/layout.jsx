@@ -1,5 +1,3 @@
-"use client";
-
 import { LoginForm } from "../LoginForm/loginForm";
 import { ProgressBar } from "../ProgressBar/progressBar";
 import { ThemeContext } from "../ThemeContext/themeContext";
@@ -7,13 +5,12 @@ import { ThemeContextSwitcher } from "../ThemeContextSwitcher/themeContextSwitch
 import { UserContext } from "../UserContext/userContext";
 import { Cart } from "../Cart/cart";
 import styles from "./layout.module.css";
-import { Provider } from "react-redux";
-import { store } from "../../redux/store";
 import "./layout.css";
+import { ProviderClientOnly } from "../ProviderClientOnly/providerClientOnly";
 
 export const Layout = ({ children }) => {
   return (
-    <Provider store={store}>
+    <ProviderClientOnly>
       <UserContext>
         <ThemeContext>
           <div>
@@ -31,6 +28,6 @@ export const Layout = ({ children }) => {
           </div>
         </ThemeContext>
       </UserContext>
-    </Provider>
+    </ProviderClientOnly>
   );
 };

@@ -1,4 +1,4 @@
-import { RestaurantsSubPagesLayout } from "../../../../../components/pages/restaurantSubPagesLayout";
+import { RestaurantsSubPagesLayout } from "../../../../components/pages/restaurantSubPagesLayout";
 
 const RestaurantLayout = async ({ params, children }) => {
   const { restaurantId } = await params;

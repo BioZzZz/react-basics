@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { calcScrollProgress } from "./calcScrollProgress";
 import styles from "./progressBar.module.css";
