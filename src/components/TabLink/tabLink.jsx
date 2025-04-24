@@ -3,9 +3,12 @@ import classNames from "classnames";
 import { use } from "react";
 import { ThemeContext } from "../ThemeContext";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-export const TabLink = ({ href, text, className, isActive, styleType }) => {
+export const TabLink = ({ href, text, className, activeExpr, styleType }) => {
   const { theme } = use(ThemeContext);
+  const path = usePathname();
+  const isActive = path.includes(activeExpr);
 
   return (
     <Link

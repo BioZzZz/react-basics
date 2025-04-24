@@ -3,10 +3,9 @@ import { RestaurantsSubPagesLayout } from "../../../../components/pages/restaura
 const RestaurantLayout = async ({ params, children }) => {
   const { restaurantId } = await params;
   return (
-    <RestaurantsSubPagesLayout
-      restaurantId={restaurantId}
-      children={children}
-    />
+    <RestaurantsSubPagesLayout restaurantId={restaurantId}>
+      {children}
+    </RestaurantsSubPagesLayout>
   );
 };
 

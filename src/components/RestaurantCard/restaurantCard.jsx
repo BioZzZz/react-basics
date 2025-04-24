@@ -1,10 +1,8 @@
 import styles from "./restaurantCard.module.css";
 import { TabLink } from "../TabLink/tabLink";
-import { usePathname } from "next/navigation";
 
 export const RestaurantCard = ({ restaurant, children }) => {
   const { id, name } = restaurant;
-  const path = usePathname();
 
   return (
     <div className={styles.card}>
@@ -15,13 +13,13 @@ export const RestaurantCard = ({ restaurant, children }) => {
         <TabLink
           href={`/restaurants/${id}/menu`}
           text={"Меню"}
-          isActive={path.includes("/menu")}
+          activeExpr={"/menu"}
           styleType={"button"}
         />
         <TabLink
           href={`/restaurants/${id}/reviews`}
           text={"Отзывы"}
-          isActive={path.includes("/reviews")}
+          activeExpr={"/reviews"}
           styleType={"button"}
         />
         {children}

@@ -6,11 +6,11 @@ import { UserContext } from "../UserContext/userContext";
 import { Cart } from "../Cart/cart";
 import styles from "./layout.module.css";
 import "./layout.css";
-import { ProviderClientOnly } from "../ProviderClientOnly/providerClientOnly";
+import { Provider } from "../Provider/provider";
 
 export const Layout = ({ children }) => {
   return (
-    <ProviderClientOnly>
+    <Provider>
       <UserContext>
         <ThemeContext>
           <div>
@@ -28,6 +28,6 @@ export const Layout = ({ children }) => {
           </div>
         </ThemeContext>
       </UserContext>
-    </ProviderClientOnly>
+    </Provider>
   );
 };
