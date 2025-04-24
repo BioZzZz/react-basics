@@ -1,7 +1,7 @@
 import { use } from "react";
 import { DishCounter } from "../DIshCounter/dishCounter";
-import { UserContext } from "../UserContext";
 import styles from "./dish.module.css";
+import { UserContext } from "../UserContext";
 
 export const Dish = ({ dish }) => {
   const { user } = use(UserContext);

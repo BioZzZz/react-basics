@@ -1,8 +1,7 @@
-import { Outlet } from "react-router";
 import styles from "./restaurantCard.module.css";
-import { TabNavLink } from "../TabNavLink/tabNavLink";
+import { TabLink } from "../TabLink/tabLink";
 
-export const RestaurantCard = ({ restaurant }) => {
+export const RestaurantCard = ({ restaurant, children }) => {
   const { id, name } = restaurant;
 
   return (
@@ -11,9 +10,19 @@ export const RestaurantCard = ({ restaurant }) => {
         <h2>{name}</h2>
       </div>
       <div>
-        <TabNavLink to={`/restaurants/${id}/menu`} text="Меню" />
-        <TabNavLink to={`/restaurants/${id}/reviews`} text="Отзывы" />
-        <Outlet />
+        <TabLink
+          href={`/restaurants/${id}/menu`}
+          text={"Меню"}
+          activeExpr={"/menu"}
+          styleType={"button"}
+        />
+        <TabLink
+          href={`/restaurants/${id}/reviews`}
+          text={"Отзывы"}
+          activeExpr={"/reviews"}
+          styleType={"button"}
+        />
+        {children}
       </div>
     </div>
   );
