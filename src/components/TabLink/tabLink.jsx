@@ -7,14 +7,7 @@ import { ThemeContext } from "../ThemeContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const TabLink = ({
-  href,
-  text,
-  className,
-  activeExpr,
-  prefetch,
-  styleType,
-}) => {
+export const TabLink = ({ href, text, className, activeExpr, styleType }) => {
   const { theme } = use(ThemeContext);
   const path = usePathname();
   const isActive = path.includes(activeExpr);
@@ -29,7 +22,6 @@ export const TabLink = ({
         [styles.isActive]: isActive,
       })}
       href={href}
-      prefetch={prefetch}
     >
       {text}
     </Link>

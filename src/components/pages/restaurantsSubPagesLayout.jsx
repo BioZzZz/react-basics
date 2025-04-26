@@ -14,14 +14,10 @@ export const RestaurantsSubPagesLayout = async ({ children }) => {
         {data.map(({ id, name }) => (
           <TabLink
             key={id}
-            href={`/restaurants/${id}/menu`}
+            href={`/restaurants/${id}`}
             text={name}
             activeExpr={id}
             styleType={"button"}
-            prefetch={
-              id === "bb8afbec-2fec-491f-93e9-7f13950dd80b" ||
-              id === "d9241927-09e1-44f3-8986-a76346869037"
-            }
           />
         ))}
       </div>
