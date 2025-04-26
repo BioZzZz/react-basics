@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./tabLink.module.css";
 import classNames from "classnames";
 import { use } from "react";
@@ -5,7 +7,14 @@ import { ThemeContext } from "../ThemeContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const TabLink = ({ href, text, className, activeExpr, styleType }) => {
+export const TabLink = ({
+  href,
+  text,
+  className,
+  activeExpr,
+  prefetch,
+  styleType,
+}) => {
   const { theme } = use(ThemeContext);
   const path = usePathname();
   const isActive = path.includes(activeExpr);
@@ -20,6 +29,7 @@ export const TabLink = ({ href, text, className, activeExpr, styleType }) => {
         [styles.isActive]: isActive,
       })}
       href={href}
+      prefetch={prefetch}
     >
       {text}
     </Link>
