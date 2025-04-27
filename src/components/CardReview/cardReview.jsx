@@ -1,10 +1,10 @@
 import styles from "./cardReview.module.css";
-import { useEditReviewMutation } from "../../redux/services/api";
-import { use, useContext, useState } from "react";
+import { use, useCallback, useContext, useState } from "react";
 import { UserContext } from "../UserContext";
 import { Button } from "../Button/button";
 import { ReviewForm } from "../ReviewForm/reviewForm";
 import { UsersContext } from "../UsersContext";
+import { editReviewAction } from "../../actions/edit-review-action";
 const MAX = 5;
 
 export const CardReview = ({ id, userId, text, rating }) => {
@@ -18,13 +18,23 @@ export const CardReview = ({ id, userId, text, rating }) => {
     setEditState(true);
   };
 
-  const [editReview, { isLoading: isEditReviewLoading }] =
-    useEditReviewMutation();
+  const handleEditReview = useCallback(
+    async (state, formData) => {
+      const text = formData.get("message");
+      const rating = formData.get("rating");
 
-  const handleEditReviewSubmit = (review) => {
-    editReview({ reviewId: id, review });
-    setEditState(false);
-  };
+      const review = {
+        text,
+        rating,
+      };
+
+      await editReviewAction({ id, review });
+      setEditState(false);
+
+      return review;
+    },
+    [id]
+  );
 
   return (
     <div>
@@ -38,11 +48,10 @@ export const CardReview = ({ id, userId, text, rating }) => {
         <ReviewForm
           defaultValue={{
             text: text,
-            count: rating,
+            rating: rating,
           }}
           formHeaderText={"Отредактируй отзыв"}
-          onSubmit={handleEditReviewSubmit}
-          isSubmitDisabled={isEditReviewLoading}
+          submitFormAction={handleEditReview}
         />
       ) : null}
     </div>
