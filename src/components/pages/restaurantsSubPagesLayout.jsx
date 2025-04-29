@@ -1,18 +1,11 @@
-"use client";
-
-import { useGetRestaurantsQuery } from "../../redux/services/api.js";
-import { Loader } from "../Loader/loader.jsx";
+import { getRestaurants } from "../../services/get-restaurants.js";
 import { TabLink } from "../TabLink/tabLink.jsx";
 
-export const RestaurantsSubPagesLayout = ({ children }) => {
-  const { data, isLoading, isError } = useGetRestaurantsQuery();
+export const RestaurantsSubPagesLayout = async ({ children }) => {
+  const data = await getRestaurants();
 
-  if (isLoading) {
-    return <Loader text={"Loading restaurants..."} />;
-  }
-
-  if (isError) {
-    return <Loader text={"Loading restaurants error"} />;
+  if (!data) {
+    return null;
   }
 
   return (
@@ -21,7 +14,7 @@ export const RestaurantsSubPagesLayout = ({ children }) => {
         {data.map(({ id, name }) => (
           <TabLink
             key={id}
-            href={`/restaurants/${id}/menu`}
+            href={`/restaurants/${id}`}
             text={name}
             activeExpr={id}
             styleType={"button"}

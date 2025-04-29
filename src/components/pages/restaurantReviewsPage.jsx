@@ -1,50 +1,56 @@
 "use client";
 
-import { useContext } from "react";
+import { useCallback, useContext, useOptimistic, useRef } from "react";
 import { UserContext } from "../UserContext";
 import { ReviewForm } from "../ReviewForm/reviewForm";
 import { CardReviews } from "../CardReviews/cardReviews";
-import { Loader } from "../Loader/loader";
-import {
-  useGetUsersQuery,
-  useAddReviewMutation,
-  useGetReviewsByRestaurantIdQuery,
-} from "../../redux/services/api";
+import { addReviewAction } from "../../actions/add-review-action";
 
-export const RestaurantReviewsPage = ({ restaurantId }) => {
+export const RestaurantReviewsPage = ({ reviewsData, restaurantId }) => {
   const { user } = useContext(UserContext);
-  const {
-    data: reviewsData,
-    isFetching: reviewsIsFetching,
-    isError: reviewsIsError,
-  } = useGetReviewsByRestaurantIdQuery(restaurantId);
+  const formDefaultState = { text: "", rating: 5 };
+  const [optimisticReview, addOptimisicReview] = useOptimistic(
+    reviewsData,
+    (currentState, opmisticValue) => [
+      ...currentState,
+      { id: "new", ...opmisticValue },
+    ]
+  );
 
-  const {
-    data: usersData,
-    isLoading: usersIsLoading,
-    isError: usersIsError,
-  } = useGetUsersQuery();
+  const handleAddReview = useCallback(
+    async (state, formData) => {
+      if (formData === null) {
+        return formDefaultState;
+      }
 
-  const [addReview, { isLoading: isAddReviewLoading }] = useAddReviewMutation();
-  const handleAddReviewSubmit = (review) => {
-    addReview({ restaurantId: restaurantId, review });
-  };
+      const text = formData.get("message");
+      const rating = formData.get("rating");
+
+      const review = {
+        text,
+        rating,
+        userId: "dfb982e9-b432-4b7d-aec6-7f6ff2e6af54",
+      };
+
+      addOptimisicReview(review);
+
+      await addReviewAction({ restaurantId, review });
+
+      return formDefaultState;
+    },
+    [restaurantId, addOptimisicReview]
+  );
 
   return (
     <div>
-      {reviewsIsFetching || usersIsLoading ? (
-        <Loader text={"Loading reviews & users..."} />
-      ) : reviewsIsError || usersIsError ? (
-        <Loader text={"Loading reviews & users error"} />
-      ) : reviewsData?.length ? (
-        <CardReviews reviews={reviewsData} />
+      {optimisticReview?.length ? (
+        <CardReviews reviews={optimisticReview} />
       ) : null}
       {user && (
         <ReviewForm
           addClearButton={true}
           formHeaderText={"Оставь отзыв"}
-          onSubmit={handleAddReviewSubmit}
-          isSubmitDisabled={isAddReviewLoading}
+          submitFormAction={handleAddReview}
         />
       )}
     </div>

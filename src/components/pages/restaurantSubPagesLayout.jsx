@@ -1,24 +1,14 @@
-"use client";
-
-import { Loader } from "../Loader/loader";
+import { getRestaurants } from "../../services/get-restaurants";
 import { RestaurantCard } from "../RestaurantCard/restaurantCard";
-import { useGetRestaurantsQuery } from "../../redux/services/api";
 
-export const RestaurantsSubPagesLayout = ({ restaurantId, children }) => {
-  const { data, isLoading, isError } = useGetRestaurantsQuery(undefined, {
-    selectFromResult: (result) => ({
-      ...result,
-      data: result?.data.find(({ id }) => id === restaurantId),
-    }),
-  });
+export const RestaurantsSubPagesLayout = async ({ restaurantId, children }) => {
+  const data = await getRestaurants();
 
-  if (isLoading) {
-    return <Loader text={"Loading restaurant..."} />;
+  const restaurant = data.find(({ id }) => id === restaurantId);
+
+  if (!restaurant) {
+    return null;
   }
 
-  if (isError) {
-    return <Loader text={"Loading restaurant error"} />;
-  }
-
-  return <RestaurantCard restaurant={data}>{children}</RestaurantCard>;
+  return <RestaurantCard restaurant={restaurant}>{children}</RestaurantCard>;
 };

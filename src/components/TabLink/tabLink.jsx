@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./tabLink.module.css";
 import classNames from "classnames";
 import { use } from "react";

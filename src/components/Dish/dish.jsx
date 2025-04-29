@@ -1,3 +1,5 @@
+"use client";
+
 import { use } from "react";
 import { DishCounter } from "../DIshCounter/dishCounter";
 import styles from "./dish.module.css";
