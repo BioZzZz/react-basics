@@ -65,13 +65,7 @@ export const ReviewForm = ({
             </div>
             <div>
               {addClearButton ? (
-                <Button
-                  type="submit"
-                  formAction={() => {
-                    console.log(user);
-                    submitAction(null);
-                  }}
-                >
+                <Button type="submit" formAction={() => submitAction(null)}>
                   Clear
                 </Button>
               ) : null}
